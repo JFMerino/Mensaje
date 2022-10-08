@@ -1,6 +1,3 @@
-import email
-import string
-from unittest import result
 from flask import Flask, render_template, request
 import hashlib
 import controlador
