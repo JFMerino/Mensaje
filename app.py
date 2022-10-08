@@ -143,5 +143,5 @@ def olvideContraseña():
             envioemail.enviar(correo,asunto,mensajeEmail)
             return render_template("informacion.html",data=respuesta)
         else:
-            return render_template("informacion.html",data="el correo electronico no existe, por favor verifiquelo e intente nuevamente")
+            return render_template("informacion.html",data="El correo electronico no existe, por favor verifiquelo e intente nuevamente")
 
