@@ -133,12 +133,14 @@ def olvideContraseña():
         codigo2 = codigo2.replace(".","")
         codigo = codigo2.encode()
         codigo = hashlib.sha384(codigo).hexdigest()
-        respuesta = controlador.actualizarContraseña(codigo,correo)
+        respuesta = controlador.olvideContraseña(correo)
         if len(respuesta)==0:
+            return render_template("informacion.html",data="El correo electronico no existe, por favor verifiquelo e intente nuevamente")
+        else:
+            controlador.actualizarContraseña(codigo,correo)
             mensajeEmail = "Su nueva contraseña temporal es:\n\n"+codigo2+"\n\n"
             asunto = "Nueva contraseña"
             envioemail.enviar(correo,asunto,mensajeEmail)
             return render_template("informacion.html",data=respuesta)
-        else:
-            return render_template("informacion.html",data="El correo electronico no existe, por favor verifiquelo e intente nuevamente")
+            
 
