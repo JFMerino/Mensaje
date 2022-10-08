@@ -78,3 +78,18 @@ def actualizarContraseña(passnew, correo):
     db.commit()
     resultado=cursor.fetchall()
     return resultado
+
+def actualizarContraseña(passnew, correo):
+    try:
+        db=sqlite3.connect("mensajeria.s3db")
+        db.row_factory=sqlite3.Row
+        cursor=db.cursor()
+        consulta="select *from Usuarios where correo='"+correo+"' and estado='1'"
+        cursor.execute(consulta)
+        db.commit()
+        consulta2 = "update Usuarios set password='"+passnew+"' where correo='"+correo+"'"
+        cursor.execute(consulta2)
+        cursor.fetchall()
+        return "Contraseña actualizada correctamente"
+    except:
+        return "El usuario ingresado es erroneo"
