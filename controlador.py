@@ -23,10 +23,16 @@ def registrarUsuario(nombre,email, password,codigo):
         db=sqlite3.connect("mensajeria.s3db")
         db.row_factory=sqlite3.Row
         cursor=db.cursor()
-        consulta="insert into usuarios (nombreusuario,correo, password, estado, codigoactivacion) values ('"+nombre+"','"+email+"','"+password+"','0','"+codigo+"')"
-        cursor.execute(consulta)
         db.commit()
-        return "Usuario Registrado"
+        consulta2 = "select *from Usuarios where correo='"+email+"' and nombreusuario = '"+nombre+"'"
+        cursor.execute(consulta2)
+        if consulta2==0:
+            consulta="insert into usuarios (nombreusuario,correo, password, estado, codigoactivacion) values ('"+nombre+"','"+email+"','"+password+"','0','"+codigo+"')"
+            cursor.execute(consulta)
+            db.commit()
+            return "Usuario Registrado"
+        else:
+            return "El correo electronico o el usuario ya existe"
     except:
         return "Por favor verifique el correo y o el nombre de usuario ya que estos ya existen"
 

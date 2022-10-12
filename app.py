@@ -142,5 +142,3 @@ def olvideContraseña():
             asunto = "Nueva contraseña"
             envioemail.enviar(correo,asunto,mensajeEmail)
             return render_template("informacion.html",data=respuesta)
-            
-
