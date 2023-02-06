@@ -15,7 +15,7 @@ def inicio():
 @app.route("/VerificarUsuario",methods=["GET","POST"])
 def VerificarUsuario():
     if request.method=="POST":
-        user=request.form["txtusuario"]
+        user=request.form["emailusuario"]
         user=user.replace("SELECT","").replace("INSERT","").replace("DELETE","").replace("UPDATE","").replace("WHERE","")
         passw = request.form["txtpass"]
         passw = passw.replace("SELECT","").replace("INSERT","").replace("DELETE","").replace("UPDATE","").replace("WHERE","")
